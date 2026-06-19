@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CreditWise — SecureTrust Bank</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <div class="page-wrapper">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <div class="logo-icon">🏦</div>
+        <div>
+          <div class="logo-name">SecureTrust</div>
+          <div class="logo-sub">CreditWise AI</div>
+        </div>
+      </div>
+      <nav class="sidebar-nav">
+        <a href="#personal"   class="nav-item active"><span class="nav-icon">👤</span> Personal Info</a>
+        <a href="#employment" class="nav-item"><span class="nav-icon">💼</span> Employment</a>
+        <a href="#financial"  class="nav-item"><span class="nav-icon">📊</span> Financial Profile</a>
+        <a href="#loan"       class="nav-item"><span class="nav-icon">🏠</span> Loan Details</a>
+      </nav>
+      <div class="sidebar-info">
+        <div class="info-box">
+          <div class="info-title">🔒 Secure &amp; Private</div>
+          <div class="info-text">Your data is processed locally. No external API calls.</div>
+        </div>
+        <div class="info-box">
+          <div class="info-title">⚡ Powered by</div>
+          <div class="info-text">Gaussian Naive Bayes model trained on historical loan data.</div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="main-content">
+
+      <div class="top-bar">
+        <div>
+          <h1 class="page-title">Loan Application Evaluator</h1>
+          <p class="page-subtitle">Fill in all sections below and submit for an instant AI-powered decision.</p>
+        </div>
+        <div class="status-badge">● System Online</div>
+      </div>
+
+      <div class="progress-wrap">
+        <div class="progress-steps">
+          <div class="step done"><div class="step-dot">1</div><span>Personal</span></div>
+          <div class="step-line"></div>
+          <div class="step done"><div class="step-dot">2</div><span>Employment</span></div>
+          <div class="step-line"></div>
+          <div class="step done"><div class="step-dot">3</div><span>Financial</span></div>
+          <div class="step-line"></div>
+          <div class="step done"><div class="step-dot">4</div><span>Loan</span></div>
+        </div>
+      </div>
+
+      <form id="loanForm" novalidate>
+
+        <!-- SECTION 1: PERSONAL -->
+        <div class="form-section" id="personal">
+          <div class="section-header">
+            <div class="section-icon">👤</div>
+            <div>
+              <h2 class="section-title">Personal Information</h2>
+              <p class="section-desc">Basic demographic details of the primary applicant</p>
+            </div>
+          </div>
+          <div class="fields-grid">
+
+            <div class="field-group">
+              <label for="Gender">Gender <span class="req">*</span></label>
+              <select id="Gender" required>
+                <option value="">Select gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+              </select>
+            </div>
+
+            <div class="field-group">
+              <label for="Age">Age <span class="req">*</span></label>
+              <input type="number" id="Age" placeholder="e.g. 34" min="18" max="80" required/>
+            </div>
+
+            <div class="field-group">
+              <label for="Marital_Status">Marital Status <span class="req">*</span></label>
+              <select id="Marital_Status" required>
+                <option value="">Select status</option>
+                <option value="Married">Married</option>
+                <option value="Single">Single</option>
+              </select>
+            </div>
+
+            <!-- EXACT values from CSV: 'Not Graduate', 'Graduate' -->
+            <div class="field-group">
+              <label for="Education_Level">Education Level <span class="req">*</span></label>
+              <select id="Education_Level" required>
+                <option value="">Select education</option>
+                <option value="Graduate">Graduate</option>
+                <option value="Not Graduate">Not Graduate</option>
+              </select>
+            </div>
+
+            <div class="field-group">
+              <label for="Dependents">Dependents <span class="req">*</span></label>
+              <input type="number" id="Dependents" placeholder="e.g. 2" min="0" max="10" required/>
+              <span class="field-hint">Number of financial dependents</span>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- SECTION 2: EMPLOYMENT -->
+        <div class="form-section" id="employment">
+          <div class="section-header">
+            <div class="section-icon">💼</div>
+            <div>
+              <h2 class="section-title">Employment &amp; Income</h2>
+              <p class="section-desc">Current employment status and monthly earnings</p>
+            </div>
+          </div>
+          <div class="fields-grid">
+
+            <!-- EXACT values from CSV: 'Salaried','Self-employed','Contract','Unemployed' -->
+            <div class="field-group">
+              <label for="Employment_Status">Employment Status <span class="req">*</span></label>
+              <select id="Employment_Status" required>
+                <option value="">Select status</option>
+                <option value="Salaried">Salaried</option>
+                <option value="Self-employed">Self-Employed</option>
+                <option value="Contract">Contract</option>
+                <option value="Unemployed">Unemployed</option>
+              </select>
+            </div>
+
+            <!-- EXACT values from CSV: 'Private','Government','Unemployed','MNC','Business' -->
+            <div class="field-group">
+              <label for="Employer_Category">Employer Category <span class="req">*</span></label>
+              <select id="Employer_Category" required>
+                <option value="">Select category</option>
+                <option value="Government">Government</option>
+                <option value="Private">Private</option>
+                <option value="MNC">MNC</option>
+                <option value="Business">Business</option>
+                <option value="Unemployed">Unemployed</option>
+              </select>
+            </div>
+
+            <div class="field-group">
+              <label for="Applicant_Income">Applicant Monthly Income <span class="req">*</span></label>
+              <div class="input-prefix-wrap">
+                <span class="input-prefix">₹</span>
+                <input type="number" id="Applicant_Income" placeholder="45,000" min="0" required/>
+              </div>
+            </div>
+
+            <div class="field-group">
+              <label for="Coapplicant_Income">Co-applicant Monthly Income <span class="req">*</span></label>
+              <div class="input-prefix-wrap">
+                <span class="input-prefix">₹</span>
+                <input type="number" id="Coapplicant_Income" placeholder="0" min="0" required/>
+              </div>
+              <span class="field-hint">Enter 0 if no co-applicant</span>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- SECTION 3: FINANCIAL -->
+        <div class="form-section" id="financial">
+          <div class="section-header">
+            <div class="section-icon">📊</div>
+            <div>
+              <h2 class="section-title">Financial Profile</h2>
+              <p class="section-desc">Credit history and current financial standing</p>
+            </div>
+          </div>
+          <div class="fields-grid">
+
+            <div class="field-group">
+              <label for="Credit_Score">Credit Score <span class="req">*</span></label>
+              <input type="number" id="Credit_Score" placeholder="300 – 900" min="300" max="900" required/>
+              <span class="field-hint">CIBIL / Bureau score</span>
+            </div>
+
+            <div class="field-group">
+              <label for="DTI_Ratio">DTI Ratio (%) <span class="req">*</span></label>
+              <input type="number" id="DTI_Ratio" placeholder="e.g. 35" min="0" max="100" step="0.1" required/>
+              <span class="field-hint">Debt-to-Income percentage</span>
+            </div>
+
+            <div class="field-group">
+              <label for="Savings">Savings Balance <span class="req">*</span></label>
+              <div class="input-prefix-wrap">
+                <span class="input-prefix">₹</span>
+                <input type="number" id="Savings" placeholder="2,00,000" min="0" required/>
+              </div>
+            </div>
+
+            <div class="field-group">
+              <label for="Collateral_Value">Collateral Value <span class="req">*</span></label>
+              <div class="input-prefix-wrap">
+                <span class="input-prefix">₹</span>
+                <input type="number" id="Collateral_Value" placeholder="8,00,000" min="0" required/>
+              </div>
+            </div>
+
+            <div class="field-group">
+              <label for="Existing_Loans">Existing Active Loans <span class="req">*</span></label>
+              <input type="number" id="Existing_Loans" placeholder="e.g. 1" min="0" required/>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- SECTION 4: LOAN -->
+        <div class="form-section" id="loan">
+          <div class="section-header">
+            <div class="section-icon">🏠</div>
+            <div>
+              <h2 class="section-title">Loan Details</h2>
+              <p class="section-desc">Requested loan parameters and property information</p>
+            </div>
+          </div>
+          <div class="fields-grid">
+
+            <div class="field-group">
+              <label for="Loan_Amount">Loan Amount Requested <span class="req">*</span></label>
+              <div class="input-prefix-wrap">
+                <span class="input-prefix">₹</span>
+                <input type="number" id="Loan_Amount" placeholder="5,00,000" min="0" required/>
+              </div>
+            </div>
+
+            <div class="field-group">
+              <label for="Loan_Term">Loan Term <span class="req">*</span></label>
+              <input type="number" id="Loan_Term" placeholder="e.g. 360" min="12" required/>
+              <span class="field-hint">Duration in months</span>
+            </div>
+
+            <!-- EXACT values from CSV: 'Personal','Car','Business','Home','Education' -->
+            <div class="field-group">
+              <label for="Loan_Purpose">Loan Purpose <span class="req">*</span></label>
+              <select id="Loan_Purpose" required>
+                <option value="">Select purpose</option>
+                <option value="Home">Home</option>
+                <option value="Car">Car</option>
+                <option value="Education">Education</option>
+                <option value="Personal">Personal</option>
+                <option value="Business">Business</option>
+              </select>
+            </div>
+
+            <!-- EXACT values from CSV: 'Urban','Semiurban','Rural' -->
+            <div class="field-group">
+              <label for="Property_Area">Property Area <span class="req">*</span></label>
+              <select id="Property_Area" required>
+                <option value="">Select area</option>
+                <option value="Urban">Urban</option>
+                <option value="Semiurban">Semi-Urban</option>
+                <option value="Rural">Rural</option>
+              </select>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- SUBMIT -->
+        <div class="submit-row">
+          <div class="submit-note">All fields marked <span class="req">*</span> are required</div>
+          <button type="submit" id="submitBtn">
+            <span id="btnText">⚡ Evaluate Loan Application</span>
+          </button>
+        </div>
+
+      </form>
+
+      <div id="resultCard" class="result-card hidden"></div>
+
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
